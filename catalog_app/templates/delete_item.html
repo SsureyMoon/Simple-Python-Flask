@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block content %}
+    <h3> Delete Item </h3>
+    <p>Are you sure to delete this item:<br></p>
+    <h4>{{ item.title.capitalize() }}</h4>
+
+    <form action="" method="POST">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+{% endblock content %}
