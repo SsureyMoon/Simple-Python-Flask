@@ -4,7 +4,11 @@
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
 {% endblock style %}
 {% block content %}
+    <script type="text/javascript">
+       var csrf_token = "{{ csrf_token }}";
+    </script>
     <form action="" method="POST">
+        <input name=_csrf_token type=hidden value="{{ csrf_token }}">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
@@ -21,7 +25,7 @@
         <div id="signinButton" class="social-login">
             <span class="g-signin"
                   data-scope="openid email"
-                  data-clientid="414241560157-n312dbuv3hin99qe2sbk7275s7tnflnm.apps.googleusercontent.com"
+                  data-clientid="{{ client_id }}"
                   data-redirecturi="postmessage"
                   data-accesstype="offline"
                   data-cookiepolicy="single_host_origin"

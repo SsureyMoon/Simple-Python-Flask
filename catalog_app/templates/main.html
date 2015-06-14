@@ -9,7 +9,7 @@
                         <div>
                             <ul>
                                 <li>
-                                    <a href="{{ url_for('api.showItemList', category_id=c.id) }}">
+                                    <a href="{{ url_for('basic.showItemList', category_id=c.id) }}">
                                         {{ c.name }}
                                     </a>
                                 </li>
@@ -22,7 +22,7 @@
         {% block item %}
             <div class="col-md-8">
                 {% if user %}
-                <a href="{{ url_for('api.addItem') }}">
+                <a href="{{ url_for('basic.addItem') }}">
                     Add item
                 </a>
                 {% endif %}
@@ -31,7 +31,7 @@
                     {% for i in items %}
                         <ul>
                             <li>
-                                <a href="{{ url_for('api.showItemDetail', category_id=i.category_id, item_id=i.id) }}">
+                                <a href="{{ url_for('basic.showItemDetail', category_id=i.category_id, item_id=i.id) }}">
                                     {{ i.title }}
                                 </a> ({{ i.category.name }})
                             </li>

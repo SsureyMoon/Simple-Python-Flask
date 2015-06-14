@@ -21,26 +21,70 @@ Simple project in Python, SQLAlchemy, and Flask
 
 
 ## Getting Started
-### Setting Environment
 
-#### Cloning the source code.
+### Setting the basic environment (Ubuntu 14.04)
+```bash
+sudo apt-get install build-essential
+sudo apt-get install update
+sudo apt-get install upgrade
+sudo apt-get install git python-dev python-setuptools python-pip
+
+```
+
+### Cloning the source code.
 ```bash
 git clone https://github.com/SsureyMoon/Simple-Python-Flask.git
 ```
 
-#### Installing python depedencies
+### Installing python dependencies
 We use [pip]((https://pip.pypa.io/en/latest/installing.html)) to install python dependencies.
-Using [virtual environment](https://virtualenv.pypa.io/en/latest/) is stronly recommended.
+Using [virtual environment](https://virtualenv.pypa.io/en/latest/) is strongly recommended.
 ```bash
 cd /where/your/project/root/is
 pip install -r requirements.txt
 ```
 
-#### Install front-end depedencies
-We use [Bower](http://bower.io/) to install front-end dependcies.
+### Installing front-end dependencies
+#### Installing Bower
+Bower requires Node.js. Please visit [here](https://Nodejs.org/), download and install Node.js.
+Install Bower by Node.js
+```bash
+npm install -g bower
+```
+#### Installing front-end libraries
+Install front-end libraries with [Bower](http://bower.io/)
 ```bash
 cd catalog_app
 bower update
+```
+
+### Downloading a credentials file for Google + OAuth
+For Google Plus Oauth, we need to download google api credential file.
+Visit your developer console and downlaod credentials.json.
+The ```url``` must look like this:
+
+https://console.developers.google.com/project/**your-app-name**/apiui/credential
+
+Place the ```client_secret.json``` file downloaded in the folder ```catalog_app/settings/```
+
+### Setting credentials for Facebook OAuth
+Open ```catalog_app/settings/config.py```, find these lines:
+```python
+# Replace this with your facebook client id.
+FACEBOOK_CLIENT_ID = ""
+# Replace this with your facebook client secret.
+FACEBOOK_CLIENT_SECRET = ""
+```
+Visit your Facebook developer page and go to the settings tab.
+The ```url``` must look like this:
+
+https://developers.facebook.com/apps/**your-app-id**/settings/basic/
+Find ```App ID``` and ```App Secret``` and fill the blanks inthe ```catalog_app/settings/config.py```
+
+** Please NEVER commit your code with your app secret! You can avoid that by running this command: **
+```bash
+cd /where/your/project/root/is
+echo 'catalog/settings/config.py' >> .gitignore
 ```
 
 ### Importing dummy data
@@ -50,16 +94,6 @@ python testdata.py
 ```
 Now, we can login with username: user{i}@email.com, password: user{i}password.
 For example, username: ```user1@email.com```, password: ```user1password```
-
-### Download a credentials file
-For Google Plus Oauth, we need to download google api credential file.
-Visit your developer console and downlaod credentials.json.
-The url must look like this:
-
-https://console.developers.google.com/project/your-app-name/apiui/credential
-
-Place the json file dowloaded in the folder ```catalog_app/settings/```
-
 
 ## Run and test the server
 ```bash

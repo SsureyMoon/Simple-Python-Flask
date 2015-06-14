@@ -9,3 +9,8 @@ DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'catalog.db')
 SECRET_KEY = "super secret nyan cat"
 
 JWT_EXPIRE = 60 * 60
+
+# Replace this with your facebook client id.
+FACEBOOK_CLIENT_ID = ""
+# Replace this with your facebook client secret.
+FACEBOOK_CLIENT_SECRET = ""

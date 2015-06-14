@@ -7,10 +7,10 @@
     </div>
     <div>
         {% if user %}
-            <a href="{{ url_for('api.editItem', category_id=item.category_id, item_id=item.id) }}">
+            <a href="{{ url_for('basic.editItem', category_id=item.category_id, item_id=item.id) }}">
                 Edit
             </a>
-            <a href="{{ url_for('api.deleteItem', item_id=item.id) }}">
+            <a href="{{ url_for('basic.deleteItem', item_id=item.id) }}">
                 Delete
             </a>
         {% endif %}

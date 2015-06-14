@@ -1,6 +1,5 @@
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
-    console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
@@ -15,17 +14,24 @@ function statusChangeCallback(response) {
                 contentType: 'application/octet-stream; charset=utf-8',
                 data: JSON.stringify({
                     email: info.email,
-                    name: info.name
+                    name: info.name,
+                    access_token: response.authResponse.accessToken
                 }),
                 success: function(result){
                     if(result){
-                        window.location.href = "/api";
+                        window.location.href = "/";
                     } else if (authResult['error']){
                         console.log('There was an error: ' + authResult['error']);
                     } else {
                         $('#result').html('Failed to  make a server-side call.' +
                                 'Check your configuration and console');
                     }
+                },
+                error: function(result){
+                    var errorFlash = '<div class="alert alert-danger" role="alert">' +
+				        '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>' +
+                        'We can\'t access your facebook' + '</div>';
+                    $('.flash-holder').html(errorFlash);
                 }
             })
         })

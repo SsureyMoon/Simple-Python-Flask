@@ -1,7 +1,10 @@
 {% extends "main.html" %}
 {% block content %}
     <h3> Add Item </h3>
-    <form action="" method="POST">
+    <script type="text/javascript">
+       var add_item_url = "{{ url_for('basic.addItem') }}";
+    </script>
+    <form id="add-item-form" action="" method="POST">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title"
@@ -9,7 +12,7 @@
                     {% if cached_email %}
                     value="{{ cached_title }}"
                     {% endif %}
-                    >
+                    required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -27,3 +30,7 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 {% endblock content %}
+{% block javascript %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='controller.js') }}"></script>
+{% endblock javascript %}

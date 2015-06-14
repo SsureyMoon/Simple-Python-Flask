@@ -1,7 +1,10 @@
 {% extends "main.html" %}
 {% block content %}
     <h3> Edit Item </h3>
-    <form action="" method="POST">
+    <script type="text/javascript">
+       var edit_item_url = "{{ url_for('basic.editItem', category_id=item.category_id, item_id=item.id) }}";
+    </script>
+    <form id="edit-item-form" action="" method="POST">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title"
@@ -9,7 +12,7 @@
                     {% if item %}
                     value="{{ item.title }}"
                     {% endif %}
-                    >
+                    required>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
@@ -31,3 +34,7 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 {% endblock content %}
+{% block javascript %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='controller.js') }}"></script>
+{% endblock javascript %}

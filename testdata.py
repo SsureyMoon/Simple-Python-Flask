@@ -1,5 +1,13 @@
-import random
-import string
+#!/usr/bin/env python
+
+"""
+testdata.py
+    import dummy data into database.
+
+created on 13/June/2014
+
+"""
+
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -9,7 +17,7 @@ from catalog_app.api.models import Base, User, Category, Item
 
 from settings import config
 
-
+# Get engine and session for dummy data importing
 engine = create_engine(
     config.DATABASE_URI
 )
@@ -18,12 +26,10 @@ Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-
-def generate_token(length=12):
-    return ''.join(random.choice(string.ascii_uppercase+string.digits)
-                   for x in xrange(length))
-
-# Create dummy user
+# Create dummy users(10 users)
+# Example:
+#     Username: user1@email.com ~ user10@email.com
+#     Password: user1password ~ user10@password
 for i in range(10):
     password = "user{}password".format(i + 1)
     enc, salt = encrypt_password(password)
@@ -33,11 +39,16 @@ for i in range(10):
     session.add(user)
     session.commit()
 
+# Create dummy categories and items(10 categories, 100 items)
+# Example:
+#     Category: category1 ~ category10
+#     Item: item1_c1 ~ item10_c10
 for c in range(10):
     category = Category(name="category{}".format(c + 1))
     session.add(category)
     session.commit()
 
+    # 10 items in each category
     for i in range(10):
         item = Item(title="item{}_c{}".format(i + 1, c + 1),
                     category_id=category.id, user_id=(i % 10 + 1))
